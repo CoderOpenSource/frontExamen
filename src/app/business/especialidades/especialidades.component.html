@@ -1,0 +1,59 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4 text-center">Gestionar Especialidades</h1>
+  <div class="flex justify-center mb-6">
+    <button (click)="addEspecialidad()" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">
+      Añadir Especialidad
+    </button>
+  </div>
+
+  <table class="min-w-full bg-white shadow-lg rounded-lg">
+    <thead>
+    <tr style="background-color: #343a40; color: white;">
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">ID</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Nombre</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Descripción</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let especialidad of especialidades" style="border-bottom: 1px solid #dee2e6;">
+      <td style="padding: 10px;">{{ especialidad.id }}</td>
+      <td style="padding: 10px;">{{ especialidad.nombre }}</td>
+      <td style="padding: 10px;">{{ especialidad.descripcion }}</td>
+      <td style="padding: 10px;">
+        <button (click)="editEspecialidad(especialidad.id)" style="background-color: #007bff; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; margin-right: 4px;">
+          Editar
+        </button>
+        <button (click)="deleteEspecialidad(especialidad.id)" style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold;">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal para agregar/editar especialidad -->
+  <div *ngIf="showModal" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;">
+    <div style="background-color: white; padding: 24px; border-radius: 8px; width: 350px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+      <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center;">
+        {{ isEditMode ? 'Editar Especialidad' : 'Añadir Especialidad' }}
+      </h2>
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #495057;">Nombre</label>
+        <input [(ngModel)]="selectedEspecialidad.nombre" placeholder="Ingrese el nombre" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;">
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #495057;">Descripción</label>
+        <textarea [(ngModel)]="selectedEspecialidad.descripcion" placeholder="Ingrese la descripción" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;"></textarea>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <button (click)="saveEspecialidad()" style="background-color: #007bff; color: white; padding: 10px 16px; border-radius: 4px; font-weight: bold; width: 45%;">
+          {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+        <button (click)="closeModal()" style="background-color: #6c757d; color: white; padding: 10px 16px; border-radius: 4px; font-weight: bold; width: 45%;">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

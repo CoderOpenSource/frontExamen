@@ -1,0 +1,30 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4 text-center">Mis Análisis</h1>
+
+  <button (click)="crearAnalisis()" class="bg-green-500 text-white px-4 py-2 rounded-lg mb-4">
+    Crear Análisis
+  </button>
+
+  <table class="min-w-full bg-white shadow-lg rounded-lg">
+    <thead>
+    <tr style="background-color: #343a40; color: white;">
+      <th class="px-4 py-2">Fecha</th>
+      <th class="px-4 py-2">Tipo de Análisis</th>
+      <th class="px-4 py-2">Resultado</th>
+      <th class="px-4 py-2">Médico</th>
+      <th class="px-4 py-2">URL Archivo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let analisis of analisisList">
+      <td class="border px-4 py-2">{{ analisis.fechaRealizacion }}</td>
+      <td class="border px-4 py-2">{{ analisis.tipoAnalisis }}</td>
+      <td class="border px-4 py-2">{{ analisis.resultado }}</td>
+      <td class="border px-4 py-2">{{ analisis.medicoNombre }} {{ analisis.medicoApellido }}</td>
+      <td class="border px-4 py-2">
+        <a [href]="analisis.archivoUrl" target="_blank" class="text-blue-500 underline">Ver archivo</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

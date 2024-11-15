@@ -1,0 +1,25 @@
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.toast-notification.bg-success {
+  background-color: #0d71c2;
+  color: white;
+}
+
+.toast-notification.bg-error {
+  background-color: #dc3545;
+  color: white;
+}

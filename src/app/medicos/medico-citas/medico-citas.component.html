@@ -1,0 +1,43 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4 text-center">Citas del Médico</h1>
+
+  <table class="min-w-full bg-white shadow-lg rounded-lg">
+    <thead>
+    <tr style="background-color: #343a40; color: white;">
+      <th style="padding: 12px;">Fecha</th>
+      <th style="padding: 12px;">Hora</th>
+      <th style="padding: 12px;">Paciente</th>
+      <th style="padding: 12px;">Especialidad</th>
+      <th style="padding: 12px;">Estado</th>
+      <th style="padding: 12px;">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cita of citas">
+      <td>{{ cita.fecha }}</td>
+      <td>{{ cita.hora }}</td>
+      <td>{{ cita.pacienteNombre }} {{ cita.pacienteApellido }}</td>
+      <td>{{ cita.especialidadNombre }}</td>
+      <td>{{ cita.estado }}</td>
+      <td>
+        <!-- Mostrar botón de Crear Consulta solo si la cita está atendida y la consulta no ha sido creada -->
+        <ng-container *ngIf="cita.estado === 'atendida' && !cita.consultaCreada">
+          <button (click)="crearConsulta(cita)" class="bg-green-500 text-white px-3 py-1 rounded-lg font-bold mr-2">
+            Crear Consulta
+          </button>
+        </ng-container>
+
+        <!-- Botones de aceptar y cancelar cita si el estado es aceptado -->
+        <ng-container *ngIf="cita.estado === 'aceptado'">
+          <button (click)="aceptarCita(cita.id)" class="bg-blue-500 text-white px-3 py-1 rounded-lg font-bold mr-2">
+            Atendida
+          </button>
+          <button (click)="cancelarCita(cita.id)" class="bg-red-500 text-white px-3 py-1 rounded-lg font-bold">
+            Cancelar
+          </button>
+        </ng-container>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

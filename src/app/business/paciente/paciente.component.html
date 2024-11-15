@@ -1,0 +1,49 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4 text-center">Gestionar Pacientes</h1>
+
+  <!-- Botón para subir archivo Excel -->
+  <div class="flex justify-center mb-6" *ngIf="!isLoading">
+    <input type="file" (change)="onFileSelected($event)" accept=".xlsx, .xls" class="hidden" #fileInput />
+    <button (click)="fileInput.click()"
+            style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">
+      Subir Pacientes
+    </button>
+  </div>
+
+  <!-- Spinner -->
+  <div *ngIf="isLoading" class="flex justify-center mb-6">
+    <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <!-- Tabla de pacientes -->
+  <table class="min-w-full bg-white shadow-lg rounded-lg" *ngIf="!isLoading">
+    <thead>
+    <tr style="background-color: #343a40; color: white;">
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">ID</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Nombre</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Apellido</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Email</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Carnet</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Sexo</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Edad</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Inicio Seguro</th>
+      <th style="padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #dee2e6;">Fin Seguro</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let paciente of pacientes" style="border-bottom: 1px solid #dee2e6;">
+      <td style="padding: 10px;">{{ paciente.id }}</td>
+      <td style="padding: 10px;">{{ paciente.usuario.nombre }}</td>
+      <td style="padding: 10px;">{{ paciente.usuario.apellido }}</td>
+      <td style="padding: 10px;">{{ paciente.usuario.email }}</td>
+      <td style="padding: 10px;">{{ paciente.carnet }}</td>
+      <td style="padding: 10px;">{{ paciente.sexo }}</td>
+      <td style="padding: 10px;">{{ paciente.edad }}</td>
+      <td style="padding: 10px;">{{ paciente.fechaInicioSeguro }}</td>
+      <td style="padding: 10px;">{{ paciente.fechaFinSeguro }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
